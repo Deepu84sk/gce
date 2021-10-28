@@ -14,11 +14,14 @@ resource "google_compute_instance" "testvm" {
     }
   }
   network_interface {
-    network = default
-    
-  }
+    network = "default"
+    access_config {}
+}
   service_account {
-    email = https://console.cloud.google.com/iam-admin/serviceaccounts/details/115688899045137213039?project=delta-trees-328005#:~:text=terraform%40delta-trees-328005.iam.gserviceaccount.com
-    
+    email = "terraform@delta-trees-328005.iam.gserviceaccount.com"
+    scopes = ["cloud-platform"]
   }
+  metadata = {
+    enable-oslogin =true
+}
 }
